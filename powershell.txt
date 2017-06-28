@@ -1,0 +1,6 @@
+install-module AzureAD
+connect-azureAD
+
+$app = Get-AzureADServicePrincipal -SearchString "Graph API App-only Sample"
+$role = Get-AzureADDirectoryRole | Where-Object { $_.DisplayName -eq "Company Administrator" }
+Add-AzureADDirectoryRoleMember -ObjectId $role.ObjectId -RefObjectId $app.ObjectId
